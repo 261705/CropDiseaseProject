@@ -85,7 +85,7 @@ def model_predict(img_path):
 @app.route('/', methods=['GET', 'POST'])
 def index():
     # Main page
-    return render_template('index.html')
+    return render_template('input.html')
 
 
 @app.route('/predict', methods=['GET', 'POST'])
@@ -107,9 +107,9 @@ def upload():
             value = (preds == int(res[0]))
             if value:
                 ID, Disease, Pathogen, Symptoms, Management = [i for i in res]
-            return render_template('result.html', Pathogen=Pathogen, Symptoms=Symptoms, Management=Management, result=Disease, filee=f.filename)
+            return render_template('output.html', result=Disease, filee=f.filename)
         else:
-            return render_template('index.html', Error="ERROR: UPLOADED IMAGE IS NOT A LEAF (OR) MORE LEAVES IN ONE IMAGE")
+            return render_template('input.html', Error="ERROR: UPLOADED IMAGE IS NOT A LEAF (OR) MORE LEAVES IN ONE IMAGE")
         # return result
     return None
 
